@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blazestore"
+version = "0.1.2"
+description = "The blazing-fast data toolkit for quantitative workflows"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+dependencies = [
+    "clickhouse-df>=0.1.5",
+    "dynaconf>=3.2.11",
+    "lark>=1.2.2",
+    "polars>=1.30.0",
+    "rich>=14.0.0",
+    "sqlparse>=0.5.3",
+    "toolz>=1.0.0",
+    "varname>=0.14.0",
+    "xcals>=0.0.1",
+    "ygo>=1.1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["blazestore", "blazestore.*"]
+
+[project.urls]
+homepage = "https://github.com/link-yundi/blazestore"
+repository = "https://github.com/link-yundi/blazestore"
