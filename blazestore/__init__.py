@@ -19,6 +19,9 @@ from .database import (
 )
 from .updater import DataUpdater, TB_UPDATER
 from .factor.core import Factor
+from .expr_db import from_polars
+
+__version__ = "v0.1.4"
 
 __all__ = [
     "DB_PATH",
@@ -32,4 +35,5 @@ __all__ = [
     "DataUpdater",
     "TB_UPDATER",
     "Factor",
+    "from_polars",
 ]

@@ -18,7 +18,7 @@ import ylog
 from blazestore.parse import extract_table_names_from_sql
 
 USERHOME = Path("~").expanduser() # 用户家目录
-NAME = "catdb"
+NAME = "BlazeStore"
 DB_PATH = USERHOME / NAME
 CONFIG_PATH = DB_PATH / "conf" / "settings.toml"
 if not CONFIG_PATH.exists():
