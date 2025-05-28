@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blazestore"
-version = "0.1.2"
+version = "v0.1.4"
 description = "The blazing-fast data toolkit for quantitative workflows"
 readme = "README.md"
 requires-python = ">=3.12"
-license = { file = "LICENSE" }
+license = "MIT"
 dependencies = [
     "clickhouse-df>=0.1.5",
     "dynaconf>=3.2.11",
