@@ -25,7 +25,7 @@ class TYPE:
     REALTIME = "real_time"  # 因子插入时间是实时的
 
 
-class FORMATE:
+class FORMAT:
     DATE = "%Y-%m-%d"
     TIME = "%H:%M:%S"
 
@@ -37,4 +37,4 @@ INDEX = (
 )
 
 
-__all__ = ["FIELD", "TYPE", "FORMATE", "INDEX", "errors", "Factor"]
+__all__ = ["FIELD", "TYPE", "FORMAT", "INDEX", "errors", "Factor"]
