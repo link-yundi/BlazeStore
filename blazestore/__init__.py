@@ -21,7 +21,7 @@ from .updater import DataUpdater, TB_UPDATER
 from .factor.core import Factor
 from .expr_db import from_polars
 
-__version__ = "v0.1.4"
+__version__ = "v0.1.6"
 
 __all__ = [
     "DB_PATH",
