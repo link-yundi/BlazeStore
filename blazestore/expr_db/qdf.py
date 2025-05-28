@@ -74,16 +74,17 @@ class QDF:
             expr_parsed = Expr(expr)
             alias = expr_parsed.alias  # if expr_parsed.alias is not None else str(expr_parsed)
             current_cols = set(self.data.columns)
-            # columns = self.data.columns
             if alias in current_cols and not cover:
                 return pl.col(alias), alias
             # 如果该表达式已有对应列，直接复用
             if expr_parsed in self._expr_cache and not cover:
                 expr_pl: pl.Expr = pl.col(self._expr_cache[expr_parsed]).alias(alias)
-                return expr_pl, alias
+                self._data_ = self._data_.with_columns(expr_pl)
+                return pl.col(alias), alias
             elif expr_parsed in self._cur_expr_cache and not cover:
                 expr_pl: pl.Expr = pl.col(self._cur_expr_cache[expr_parsed]).alias(alias)
-                return expr_pl, alias
+                self._data_ = self._data_.with_columns(expr_pl)
+                return pl.col(alias), alias
 
             def recur_compile(expr_: Expr):
                 """递归编译"""
