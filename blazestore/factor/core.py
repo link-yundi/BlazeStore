@@ -71,20 +71,20 @@ def _get_value_firsttime(fac: Factor, date: str) -> pl.DataFrame:
     if isinstance(data, (pd.DataFrame, pd.Series)):
         index_levs = data.index.nlevels
         if index_levs == 1:
-            assert FIELD_ASSET == data.index.name, "因子计算结果index中必须包含`{FIELD_ASSET}`"
+            assert FIELD_ASSET == data.index.name, f"因子计算结果index中必须包含`{FIELD_ASSET}`"
         else:
-            assert FIELD_ASSET in data.index.names, "因子计算结果index中必须包含`{FIELD_ASSET}`"
+            assert FIELD_ASSET in data.index.names, f"因子计算结果index中必须包含`{FIELD_ASSET}`"
         data = pl.from_pandas(data.reset_index())
     if FIELD_ASSET not in data.columns:
         if data.is_empty():
-            raise Exception(f"Empty Value!")
-        raise Exception("因子计算函数返回值中必须包含`{FIELD_ASSET}`列")
+            raise Exception("Empty Value!")
+        raise Exception(f"因子计算函数返回值中必须包含`{FIELD_ASSET}`列")
     index = [FIELD_DATE, FIELD_TIME, FIELD_ASSET]
     val_fields = data.drop(index, strict=False).columns
 
     data = data.unique().fill_nan(None)
     if data.drop_nulls().is_empty():
-        raise Exception(f"Empty Value!")
+        raise Exception("Empty Value!")
     if FIELD_DATE not in data.columns:
         data = data.with_columns(pl.lit(date).alias(FIELD_DATE))
     if FIELD_TIME not in data.columns:
@@ -612,7 +612,8 @@ class Factor:
             一个新的Factor对象，其属性根据当前实例和调用参数初始化。
         """
         frame = self._frame + 1
-        newFactor = Factor(*self._depends, fn=ygo.delay(self.fn)(**kwargs),
+        newFactor = Factor(*self._depends,
+                           fn=ygo.delay(self.fn)(**kwargs),
                            name=self._name,
                            frame=frame)
         newFactor.name = self.name
@@ -697,7 +698,8 @@ class Factor:
                   codes: list[str] | None = None,
                   time: str = '15:00:00',
                   avoid_future: bool = True,
-                  rt: bool = True) -> pd.Series | pd.DataFrame | None:
+                  rt: bool = True,
+                  ) -> pd.Series | pd.DataFrame | None:
         """
         获取指定日期和时间的最新数据。
 
