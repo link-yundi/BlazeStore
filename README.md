@@ -1,9 +1,9 @@
 # BlazeStore 
 🚀 blazestore —— The blazing-fast data toolkit for quantitative workflows
+---
 专注于本地量化数据的高效管理与读写，具备以下特点：
 - High Performance：借助 polars（Rust 实现），大幅优于 pandas，单机内存/多核利用率高，I/O 高效，支持宽表大数据量（TB 级别）分析。
 - 分区与列式存储：自动按日期等分区，底层 Parquet 格式，适合全频段（tick/分钟/日线）数据。
-- 
 - 支持本地高效的数据读写、SQL 查询、分区管理，并方便与主流数据库（MySQL、ClickHouse）集成。
 - 内置任务调度与批量更新（DataUpdater），适合日常行情和因子数据自动维护。
 - 支持因子工程，便于复用、管理、批量计算和依赖关系控制，适合复杂因子体系的量化研究。
