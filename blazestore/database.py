@@ -27,9 +27,9 @@ if not CONFIG_PATH.exists():
     except Exception as e:
         ylog.error(f"[{NAME}]配置文件生成失败: {e}")
     template_content = f"""[paths]
-{NAME}="{DB_PATH}"  # 本地数据库，默认家目录
+{NAME}="{DB_PATH}" 
 
-## 数据库配置：
+# Configuration of database
 [databases]
 # [databases.ck]
 # urls=["<host1>:<port1>", "<host2>:<port2>",]
@@ -40,7 +40,7 @@ if not CONFIG_PATH.exists():
 # user="xxxx"
 # password="xxxxxx"
 
-## 视情况自由增加其他配置"""
+# 视情况自由增加其他配置\n"""
     with open(CONFIG_PATH, "w") as f:
         f.write(template_content)
     ylog.info(f"[{NAME}]生成配置文件: {CONFIG_PATH}")
@@ -56,10 +56,7 @@ def get_settings():
 _settiings = get_settings()
 if _settiings is not None:
     DB_PATH = _settiings.get(f"paths.{NAME}", "")
-    if not DB_PATH.endswith(NAME):
-        DB_PATH = Path(DB_PATH) / NAME
-    else:
-        DB_PATH = Path(DB_PATH)
+    DB_PATH = Path(DB_PATH)
 
 
 # ======================== 本地数据库 catdb ========================
