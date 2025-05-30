@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "blazestore"
-version = "v0.1.6"
+version = "v0.1.7"
 description = "The blazing-fast data toolkit for quantitative workflows"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -19,7 +19,7 @@ dependencies = [
     "sqlparse>=0.5.3",
     "toolz>=1.0.0",
     "varname>=0.14.0",
-    "xcals>=0.0.1",
+    "xcals>=0.0.3",
     "ygo>=1.1.0",
 ]
 
