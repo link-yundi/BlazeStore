@@ -15,7 +15,7 @@ import polars as pl
 from dynaconf import Dynaconf
 
 import ylog
-from blazestore.parse import extract_table_names_from_sql
+from .parse import extract_table_names_from_sql
 
 USERHOME = Path("~").expanduser() # 用户家目录
 NAME = "BlazeStore"

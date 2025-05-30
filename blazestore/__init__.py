@@ -17,7 +17,7 @@ from .database import (
     read_ck,
     read_mysql,
 )
-from .updater import DataUpdater, TB_UPDATER
+
 from .factor.core import Factor
 from .expr_db import from_polars
 
@@ -32,8 +32,6 @@ __all__ = [
     "tb_path",
     "read_ck",
     "read_mysql",
-    "DataUpdater",
-    "TB_UPDATER",
     "Factor",
     "from_polars",
 ]
