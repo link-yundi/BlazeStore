@@ -36,21 +36,23 @@ read_df = bs.sql(query)
 
 ### Examples
 #### 1.update data
+
 ```python
 import blazestore as bs
-from blazestore import DataUpdater
 
 # implement update function
-def update_kline_daily():
-    # 读取 clickhouse中的 行情数据落到本地
+def update_stock_kline_day(tb_name, date):
+    # 读取 clickhouse中的 行情数据落到本地 tb_name
     query = ...
-    kline_minute = bs.read_ck(query, db_conf="databases.ck")
-    bs.put(kline_minute, tb_name="market_data/kline_minute", partitions=["date", ])
+    return bs.read_ck(query, db_conf="databases.ck")
 
-# create data updater
-updater = DataUpdater(name="行情数据更新器")
-updater.add_task(task_name="分钟行情", update_fn=update_kline_daily)
-updater.do()
+import blazestore.updater
+# write into local file: bs.DB_PATH/tb_name
+tb_name = "mc/stock_kline_day"
+blazestore.updater.submit(tb_name=tb_name, 
+                          fetch_fn=update_stock_kline_day, 
+                          mode="auto", 
+                          beg_date="2018-01-01", )
 ```
 
 #### 2.customize data
