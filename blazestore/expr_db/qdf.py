@@ -160,15 +160,19 @@ class QDF:
         self._data_ = self._data_.with_columns(*exprs_to_add).fill_nan(None)
         new_expr_cache = dict()
         try:
+            raw_cols = set(self.data.columns)
             self.data = self._data_.collect()
             final_df = self.data.select(*self.index, *exprs_select)
             current_cols = set(self.data.columns)
+            raw_cols.update(set(exprs_select))
             # 缓存整理：只保留当前表达式的缓存
             self._expr_cache.update(self._cur_expr_cache)
             for k, v in self._expr_cache.items():
                 if v in current_cols:
                     new_expr_cache[k] = v
             self._expr_cache = new_expr_cache
+            drop_cols = current_cols.difference(raw_cols)
+            self.data = self.data.drop(drop_cols)
             return final_df
         except Exception as e:
             current_cols = set(self.data.columns)
@@ -178,4 +182,3 @@ class QDF:
                     new_expr_cache[k] = v
             self._expr_cache = new_expr_cache
             raise PolarsError(message=f"LazyFrame.collect() 阶段出错\n{e}") from e
-

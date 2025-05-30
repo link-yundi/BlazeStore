@@ -21,7 +21,7 @@ from .database import (
 from .factor.core import Factor
 from .expr_db import from_polars
 
-__version__ = "v0.1.6"
+__version__ = "v0.1.7"
 
 __all__ = [
     "DB_PATH",
